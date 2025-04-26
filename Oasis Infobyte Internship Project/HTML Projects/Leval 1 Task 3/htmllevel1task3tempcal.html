@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0f172a;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #1e293b;
+      border-radius: 25px;
+      padding: 2rem;
+      width: 350px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .col {
+      width: 48%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.4rem;
+      color: #cbd5e1;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 0.5rem;
+      border: none;
+      border-bottom: 2px solid #334155;
+      background-color: #007bff;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .result {
+      margin-top: 1rem;
+      font-size: 1.5rem;
+      text-align: left;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #334155;
+    }
+
+    .btn {
+      width: 100%;
+      margin-top: 2rem;
+      background-color: #007bff;
+      color: #fff;
+      font-size: 1.2rem;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background-color: #005fc1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="title">Temperature converter</div>
+    <div class="row">
+      <div class="col">
+        <label for="degrees">Degrees</label>
+        <input type="number" id="degrees" value="72">
+      </div>
+      <div class="col">
+        <label for="type">Type</label>
+        <select id="type">
+          <option value="fahrenheit" selected>Fahrenheit</option>
+          <option value="celsius">Celsius</option>
+          <option value="kelvin">Kelvin</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <label for="result">Result</label>
+      <div class="result" id="result">22.2222 °C</div>
+    </div>
+    <button class="btn" onclick="convertTemp()">Convert</button>
+  </div>
+
+  <script>
+    function convertTemp() {
+      const degrees = parseFloat(document.getElementById('degrees').value);
+      const type = document.getElementById('type').value;
+      let result = '';
+
+      if (isNaN(degrees)) {
+        result = 'Invalid input';
+      } else {
+        if (type === 'fahrenheit') {
+          result = ((degrees - 32) * 5 / 9).toFixed(4) + ' °C';
+        } else if (type === 'celsius') {
+          result = ((degrees * 9 / 5) + 32).toFixed(4) + ' °F';
+        } else if (type === 'kelvin') {
+          result = (degrees - 273.15).toFixed(4) + ' °C';
+        }
+      }
+
+      document.getElementById('result').innerText = result;
+    }
+  </script>
+</body>
+
+</html>
